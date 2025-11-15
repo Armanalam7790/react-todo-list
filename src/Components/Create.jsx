@@ -3,8 +3,13 @@ import { nanoid } from "nanoid/non-secure";
 import "./Read.css";
 import { useForm } from "react-hook-form";
 import { toast } from "react-toastify";
+import { useContext } from "react";
+import { todocontext } from "./Wraper";
 
-const Create = ({ todos, settodos }) => {
+const Create = () => {
+
+   const [todos, settodos]=  useContext(todocontext)
+   
   const {
     register,
     handleSubmit,

@@ -1,19 +1,29 @@
-import React from "react";
+import React, { useContext } from "react";
 import { toast } from "react-toastify";
+import { todocontext } from "./Wraper";
 
-const Read = ({ todos, settodos }) => {
+const Read = () => {
+  const [todos, settodos] = useContext(todocontext);
+
   const DeleteHandler = (id) => {
     const filltertodo = todos.filter((todo) => todo.id != id);
     settodos(filltertodo);
-    toast.error("todo is delete")
+    toast.error("todo is delete");
   };
 
   const randertodos = todos.map((todo) => {
     return (
-      <li key={todo.id} className="mb-2 flex justify-between items-center  p-3 bg-gray-900 rounded">
-       <span className="text-xl font=thin">{todo.title}</span>  
-        <button className="text-thin text-red-400 text-sm" onClick={() => DeleteHandler(todo.id)}>delete</button>
-
+      <li
+        key={todo.id}
+        className="mb-2 flex justify-between items-center  p-3 bg-gray-900 rounded"
+      >
+        <span className="text-xl font=thin">{todo.title}</span>
+        <button
+          className="text-thin text-red-400 text-sm"
+          onClick={() => DeleteHandler(todo.id)}
+        >
+          delete
+        </button>
       </li>
     );
   });
